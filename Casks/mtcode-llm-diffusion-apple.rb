@@ -8,19 +8,19 @@
 #   2. Users then install with:
 #        brew tap mtcodeai/tap
 #        brew install --cask mtcode-llm-diffusion-apple
-#      Homebrew extracts the tar.gz and runs mac/install.sh, which copies the
-#      backend into the per-user MTCode Server data directory — no sudo.
+#      Homebrew mounts the dmg and runs install.sh, which copies the backend
+#      into the per-user MTCode Server data directory — no sudo.
 #
 # Per release: update `version` and `sha256` below and push to the tap.
-#   sha256:  shasum -a 256 mtcode-llm-diffusion-apple-mac-arm64.tar.gz
-# Tip: publish the tar.gz under a versioned name (referenced as #{version}
+#   sha256:  shasum -a 256 MTCodeLLMDiffusion-Apple-macOS-ARM64.dmg
+# Tip: publish the dmg under a versioned name (referenced as #{version}
 # in `url`) so cached downloads can never go stale under an unchanged URL.
 
 cask "mtcode-llm-diffusion-apple" do
   version "1.0.0"
-  sha256 "64a60981b8f312b16adb7b42146663c86b30d09e7db5deb4b58b94e06a3caa50"
+  sha256 "469e57053c449ed182764060c3b49bc09066beb26c414cffdeee3e5673675050"
 
-  url "https://mtcodeai.com/downloads/mtcode-llm-diffusion/mtcode-llm-diffusion-apple-mac-arm64.tar.gz"
+  url "https://mtcodeai.com/downloads/mtcode-llm-diffusion/MTCodeLLMDiffusion-Apple-macOS-ARM64.dmg"
   name "MTCode LLM and Diffusion Apple Metal Backend"
   desc "Apple Metal LLM and diffusion backend for MTCode Server"
   homepage "https://mtcodeai.com/"
@@ -29,11 +29,11 @@ cask "mtcode-llm-diffusion-apple" do
   depends_on cask: "mtcode-server"
 
   installer script: {
-    executable: "mac/install.sh",
+    executable: "install.sh",
   }
 
   uninstall script: {
-    executable: "mac/uninstall.sh",
+    executable: "uninstall.sh",
   }
 
   zap trash: [
