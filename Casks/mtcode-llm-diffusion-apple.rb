@@ -18,7 +18,7 @@
 
 cask "mtcode-llm-diffusion-apple" do
   version "1.0.0"
-  sha256 "e2fd67188ec4ac8165a4e8799618469fae16a267b7e32a11198a51eb8370d0ab"
+  sha256 "3493f6ed429ebc4daaeb226cb871badb026ed8e04a342ed9b7eed875f1834d25"
 
   url "https://mtcodeai.com/downloads/mtcode-llm-diffusion/MTCodeLLMDiffusion-Apple-macOS-ARM64.dmg"
   name "MTCode LLM and Diffusion Apple Metal Backend"
