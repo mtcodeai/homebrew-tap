@@ -1,32 +1,33 @@
-# Homebrew cask for the MTCode LLM & Diffusion Apple Metal backend.
+# Homebrew cask for the MTCode Apple Metal backend (mtcode-llm + mtcode-diffusion).
 #
 # How to publish (one-time setup):
 #   1. Copy this file into the existing tap repo github.com/mtcodeai/homebrew-tap
 #      as:  Casks/mtcode-llm-diffusion-apple.rb
-#      (build_deploy_mac.sh does this automatically when
-#      ~/.config/mtcodeai/github_token exists.)
+#      (build_deploy_mac.sh does this automatically when a GitHub token is
+#      available at ~/.config/mtcodeai/github_token.)
 #   2. Users then install with:
 #        brew tap mtcodeai/tap
 #        brew install --cask mtcode-llm-diffusion-apple
-#      Homebrew mounts the dmg and runs install.sh, which copies the backend
-#      into the per-user MTCode Server data directory — no sudo.
 #
-# Per release: update `version` and `sha256` below and push to the tap.
-#   sha256:  shasum -a 256 MTCodeLLMDiffusion-Apple-macOS-ARM64.dmg
-# Tip: publish the dmg under a versioned name (referenced as #{version}
-# in `url`) so cached downloads can never go stale under an unchanged URL.
+# Per release: build_deploy_mac.sh rewrites `version` and `sha256` below from
+# the freshly built dmg, then pushes the file to the tap. The sha256 is the
+# dmg's:  shasum -a 256 MTCodeLLMDiffusion-Apple-macOS-ARM64.dmg
+#
+# The dmg carries install.sh / uninstall.sh, which place the backend in
+# ~/Library/Application Support/MTCodeServer/llm-diffusion/apple (per-user,
+# no sudo) and register it with MTCode Server — the same flow as running the
+# "Install MTCode Backend.command" from the mounted dmg.
 
 cask "mtcode-llm-diffusion-apple" do
   version "1.0.0"
-  sha256 "3493f6ed429ebc4daaeb226cb871badb026ed8e04a342ed9b7eed875f1834d25"
+  sha256 "12697eff8b7fa51a35a02860c673b918aa12869cef7d344cb95cb59dbf58758e"
 
   url "https://mtcodeai.com/downloads/mtcode-llm-diffusion/MTCodeLLMDiffusion-Apple-macOS-ARM64.dmg"
-  name "MTCode LLM and Diffusion Apple Metal Backend"
+  name "MTCode LLM-Diffusion Apple Backend"
   desc "Apple Metal LLM and diffusion backend for MTCode Server"
   homepage "https://mtcodeai.com/"
 
   depends_on arch: :arm64
-  depends_on cask: "mtcode-server"
 
   installer script: {
     executable: "install.sh",
@@ -37,12 +38,6 @@ cask "mtcode-llm-diffusion-apple" do
   }
 
   zap trash: [
-    "~/Library/Application Support/MTCodeServer/llm-diffusion",
+    "~/Library/Application Support/MTCodeServer/llm-diffusion/apple",
   ]
-
-  caveats <<~EOS
-    The backend installs into:
-      ~/Library/Application Support/MTCodeServer/llm-diffusion/apple
-    Start or restart MTCode Server afterwards so it detects the backend.
-  EOS
 end
