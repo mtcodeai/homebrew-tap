@@ -1,37 +1,13 @@
-# Homebrew cask for MTCode Server (GUI + mtserver-cli).
-#
-# How to publish (one-time setup):
-#   1. Copy this file into the existing tap repo github.com/mtcodeai/homebrew-tap
-#      as:  Casks/mtcode-server.rb
-#   2. Users then install with:
-#        brew tap mtcodeai/tap
-#        brew install --cask mtcode-server
-#      Homebrew copies the app to /Applications and symlinks mtserver-cli,
-#      mtcode-admin and mtcode-relay into its bin directory (already on
-#      PATH) — no sudo, no extra steps.
-#
-# Per release: update `version` and `sha256` below and push to the tap.
-#   sha256:  shasum -a 256 MTCodeServer-macOS-ARM64.dmg
-# Tip: publish the dmg under a versioned name (e.g.
-# MTCodeServer-1.0.1-macOS-ARM64.dmg, referenced as #{version} in `url`) so
-# cached downloads can never go stale under an unchanged URL.
-#
-# Note on Gatekeeper: Homebrew itself requires no signature, but the app it
-# installs is quarantined like any download — an unsigned/un-notarized build
-# shows the "unverified developer" prompt on first launch. Sign + notarize
-# the release dmg to remove that friction (users can also opt out with
-# `brew install --cask --no-quarantine mtcode-server`).
-
 cask "mtcode-server" do
   version "1.0.0"
-  sha256 "d993bb9186d32225824a72c8657838aa55589cb59d9d5d18215f56eca7d138fa"
+  sha256 "6dd978e4521b8e6c457381c5488d2a4d59746d7244eedac34ff459e2be197494"
 
-  url "https://mtcodeai.com/downloads/mtcode-server/MTCodeServer-macOS-ARM64.dmg"
+  url "https://mtcodeai.com/downloads/mtcode-server/MTCodeServer-macOS-Universal.dmg"
   name "MTCode Server"
   desc "Server host for MTCode AI GPU services"
   homepage "https://mtcodeai.com/"
 
-  depends_on arch: :arm64
+  # Universal dmg (arm64 + x86_64): no arch restriction.
 
   app "MTCodeServer.app"
   binary "#{appdir}/MTCodeServer.app/Contents/MacOS/mtserver-cli"
