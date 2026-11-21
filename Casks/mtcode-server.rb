@@ -1,6 +1,6 @@
 cask "mtcode-server" do
   version "1.0.0"
-  sha256 "453ec45e42614ce995dcf753833b8dde66c6fe0c5084ce3fd72302ecd044077c"
+  sha256 "a07d2f8f60b26656cdf19b6ff823098831af310cf6f3559947ebd8a3dcf0c5ca"
 
   url "https://mtcodeai.com/downloads/mtcode-server/MTCodeServer-macOS-Universal.dmg"
   name "MTCode Server"
