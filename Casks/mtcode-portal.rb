@@ -1,6 +1,6 @@
 cask "mtcode-portal" do
-  version "1.0.0"
-  sha256 "89b67743302003801797b2b8d80bc3a06fb2074d46c879d8f4dc05a57d74171e"
+  version "1.0.1"
+  sha256 "aef5cced72e5469cab82a1638ed37c5b9a5a4f536d4f80009dc9b8245222e49f"
 
   url "https://mtcodeai.com/downloads/mtcode-portal/MTCodePortal-macOS-Universal.dmg"
   name "MTCode Portal"
